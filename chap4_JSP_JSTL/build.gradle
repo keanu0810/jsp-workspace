@@ -1,0 +1,44 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.3'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.kh'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// implementation  .java .html .properties . jsp... 같은 파일에서 특정 기능을 가져와서 사용
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web' //Controller를 위한 경로
+	// jsp 를 사용하기 위해 가져오는 경로
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:2.0.0'
+    
+    // developmentOnly 설정값
+	// devtools 가 없어서 컨트롤러가 자동으로 재설정이 안되고 있음
+	// dev tools 경우 설정이지 특정 기능 사용 x    코드 변경이 있을 때 새로고침하라는 설정값
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	
+
+    
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
